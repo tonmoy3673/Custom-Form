@@ -1,4 +1,7 @@
+import useCustomForm from "./hooks/useCustomForm";
+
 function App() {
+  const {steps,step,currentStepIndex} = useCustomForm([])
   return (
     <>
       <main
@@ -38,7 +41,24 @@ function App() {
           <form>
             {/* =========== display step ===== */}
             <div style={{ position: "absolute", top: ".5rem", right: ".8rem" }}>
-              0/2
+              {currentStepIndex}/{steps.length}
+            </div>
+            {/* ========== form Content ====== */}
+            <div>
+              {step}
+            </div>
+            {/* ========= step buttons container ========= */}
+            <div style={{
+              marginTop:"1rem",
+              display:"flex",
+              gap:".5rem",
+              justifyContent:"flex-end"
+            }}>
+              {/* ======== buttons ======= */}
+              {
+                currentStepIndex !== 0 && <button >Back</button>
+              }
+              <button>Next</button>
             </div>
           </form>
         </div>

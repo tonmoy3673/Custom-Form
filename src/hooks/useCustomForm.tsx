@@ -29,6 +29,7 @@ const goTo =(index:StepType):void=>{
             currentStepIndex,
             step: steps[currentStepIndex],
             next,
+            steps,
             back,
             goTo
         }

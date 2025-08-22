@@ -1,7 +1,7 @@
 import useCustomForm from "./hooks/useCustomForm";
 
 function App() {
-  const {steps,step,currentStepIndex} = useCustomForm([])
+  const {steps,step,currentStepIndex,back,next} = useCustomForm([])
   return (
     <>
       <main
@@ -56,9 +56,9 @@ function App() {
             }}>
               {/* ======== buttons ======= */}
               {
-                currentStepIndex !== 0 && <button >Back</button>
+                currentStepIndex !== 0 && <button type="button" onClick={back}>Back</button>
               }
-              <button>Next</button>
+              <button type="button" onClick={next}>{currentStepIndex === steps.length-1 ? 'Finish':"Next"}</button>
             </div>
           </form>
         </div>

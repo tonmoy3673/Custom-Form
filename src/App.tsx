@@ -1,7 +1,14 @@
 import useCustomForm from "./hooks/useCustomForm";
+import AccountForm from "./pages/AccountForm";
+import AddressForm from "./pages/AddressForm";
+import UserForm from "./pages/UserForm";
 
 function App() {
-  const {steps,step,currentStepIndex,back,next} = useCustomForm([])
+  const { steps, step, currentStepIndex, back, next } = useCustomForm([
+    <UserForm />,
+    <AddressForm />,
+    <AccountForm />,
+  ]);
   return (
     <>
       <main
@@ -19,7 +26,7 @@ function App() {
             paddingTop: "10px",
             fontSize: "25px",
             fontWeight: "bold",
-            color: "GrayText",
+            color: "gray",
           }}
         >
           Custom Form
@@ -44,21 +51,25 @@ function App() {
               {currentStepIndex}/{steps.length}
             </div>
             {/* ========== form Content ====== */}
-            <div>
-              {step}
-            </div>
+            <div>{step}</div>
             {/* ========= step buttons container ========= */}
-            <div style={{
-              marginTop:"1rem",
-              display:"flex",
-              gap:".5rem",
-              justifyContent:"flex-end"
-            }}>
+            <div
+              style={{
+                marginTop: "1rem",
+                display: "flex",
+                gap: ".5rem",
+                justifyContent: "flex-end",
+              }}
+            >
               {/* ======== buttons ======= */}
-              {
-                currentStepIndex !== 0 && <button type="button" onClick={back}>Back</button>
-              }
-              <button type="button" onClick={next}>{currentStepIndex === steps.length-1 ? 'Finish':"Next"}</button>
+              {currentStepIndex !== 0 && (
+                <button type="button" onClick={back}>
+                  Back
+                </button>
+              )}
+              <button type="button" onClick={next}>
+                {currentStepIndex === steps.length - 1 ? "Finish" : "Next"}
+              </button>
             </div>
           </form>
         </div>

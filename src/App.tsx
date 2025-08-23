@@ -1,3 +1,4 @@
+import type { FormEvent } from "react";
 import useCustomForm from "./hooks/useCustomForm";
 import AccountForm from "./pages/AccountForm";
 import AddressForm from "./pages/AddressForm";
@@ -9,6 +10,12 @@ function App() {
     <AddressForm />,
     <AccountForm />,
   ]);
+
+  // ======= onSubmit =====//
+  const onSubmit =(e:FormEvent)=>{
+    e.preventDefault();
+    next();
+  }
   return (
     <>
       <main
@@ -45,7 +52,7 @@ function App() {
           }}
         >
           {/* ========== form ======== */}
-          <form>
+          <form onSubmit={onSubmit}>
             {/* =========== display step ===== */}
             <div style={{ position: "absolute", top: ".5rem", right: ".8rem" }}>
               {currentStepIndex}/{steps.length}
@@ -63,11 +70,11 @@ function App() {
             >
               {/* ======== buttons ======= */}
               {currentStepIndex !== 0 && (
-                <button type="button" onClick={back}>
+                <button type="submit" onClick={back}>
                   Back
                 </button>
               )}
-              <button type="button" onClick={next}>
+              <button type="submit">
                 {currentStepIndex === steps.length - 1 ? "Finish" : "Next"}
               </button>
             </div>

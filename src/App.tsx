@@ -1,21 +1,48 @@
-import type { FormEvent } from "react";
+import { useState, type FormEvent } from "react";
 import useCustomForm from "./hooks/useCustomForm";
 import AccountForm from "./pages/AccountForm";
 import AddressForm from "./pages/AddressForm";
 import UserForm from "./pages/UserForm";
 
+interface FormDataType {
+  firstName: string;
+  lastName: string;
+  age: string;
+  street: string;
+  city: string;
+  state: string;
+  zip: string;
+  email: string;
+  password: string;
+}
+const initialFormData: FormDataType = {
+  firstName: "",
+  lastName: "",
+  age: "",
+  street: "",
+  city: "",
+  state: "",
+  zip: "",
+  email: "",
+  password: "",
+};
 function App() {
+  const [data, setData] = useState<FormDataType>(initialFormData);
+  const updatedData =(fields: Partial<FormDataType>)=>{
+
+  }
+
   const { steps, step, currentStepIndex, back, next } = useCustomForm([
-    <UserForm />,
-    <AddressForm />,
-    <AccountForm />,
+    <UserForm {...data} />,
+    <AddressForm {...data} />,
+    <AccountForm {...data} />,
   ]);
 
   // ======= onSubmit =====//
-  const onSubmit =(e:FormEvent)=>{
+  const onSubmit = (e: FormEvent) => {
     e.preventDefault();
     next();
-  }
+  };
   return (
     <>
       <main

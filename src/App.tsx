@@ -43,7 +43,11 @@ function App() {
   // ======= onSubmit =====//
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();
-    next();
+    if(currentStepIndex !== steps.length-1) return next();
+    else{
+      alert("Your Account has been Created Successfully")
+    }
+    
   };
   return (
     <>

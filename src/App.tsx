@@ -29,13 +29,15 @@ const initialFormData: FormDataType = {
 function App() {
   const [data, setData] = useState<FormDataType>(initialFormData);
   const updatedData =(fields: Partial<FormDataType>)=>{
-
+    setData(prev=>{
+      return {...prev,...fields}
+    })
   }
 
   const { steps, step, currentStepIndex, back, next } = useCustomForm([
-    <UserForm {...data} />,
-    <AddressForm {...data} />,
-    <AccountForm {...data} />,
+    <UserForm {...data} updatedData={updatedData}/>,
+    <AddressForm {...data} updatedData={updatedData}/>,
+    <AccountForm {...data} updatedData={updatedData}/>,
   ]);
 
   // ======= onSubmit =====//
